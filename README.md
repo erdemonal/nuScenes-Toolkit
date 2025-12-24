@@ -1,6 +1,7 @@
 # nuScenes DB Tool
 
 nuScenes DB Tool is a Python application for loading, managing, and querying the nuScenes dataset using PostgreSQL.  
+
 It provides a graphical interface, a REST API, and supporting scripts for working with nuScenes data in a structured database form.
 
 The project is intended for dataset inspection, preprocessing, and experimentation rather than production deployment.
