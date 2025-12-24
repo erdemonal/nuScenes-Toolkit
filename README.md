@@ -1,163 +1,128 @@
-# nuScenes DB Tool - v1.0.0
+# nuScenes DB Tool
 
-**nuScenes DB Tool** is a Python-based application designed to manage nuScenes datasets using PostgreSQL and a FastAPI-powered REST API. This tool provides a modern GUI for database interaction, supports CRUD operations, custom SQL queries, and enables dataset generation from raw LiDAR samples.
+nuScenes DB Tool is a Python application for loading, managing, and querying the nuScenes dataset using PostgreSQL.  
+It provides a graphical interface, a REST API, and supporting scripts for working with nuScenes data in a structured database form.
 
-## Project Overview
+The project is intended for dataset inspection, preprocessing, and experimentation rather than production deployment.
 
-This project consists of the following components:
+## Overview
 
-- **GUI Application**: A modern, user-friendly interface built with customtkinter for database interaction.
-- **FastAPI REST API**: A robust API for programmatic access to nuScenes data.
-- **PostgreSQL Database**: A structured database schema for storing nuScenes data.
-- **Docker Support**: Containerized deployment for both the API and database loader.
+The tool consists of three main parts:
+
+• A desktop GUI for database interaction  
+• A REST API implemented with FastAPI for programmatic access  
+• A PostgreSQL schema designed around the nuScenes dataset  
+
+Docker support is provided for easier setup and repeatable environments.
 
 ## Features
 
-- **FastAPI REST API**: Perform CRUD operations and interact with nuScenes data programmatically.
-- **nuScenes Dataset Integration**: Preprocess and load raw LiDAR data into PostgreSQL.
-- **SQL Query Execution**: Run custom SQL queries directly within the app and view results.
-- **Dockerized Environment**: Simplified deployment with Docker support.
-- **Data Export**: Export table data or the entire database in SQL or CSV format.
-- **CSV Import**: Import data into tables from CSV files.
-- **GUI Enhancements**: Use a modern interface with sorting and easy navigation through tables.
-- **Executable**: Available as a packaged executable under releases for easy installation.
-
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [How to Use](#how-to-use)
-- [API Documentation](#api-documentation)
-- [Database Schema](#database-schema)
-- [Screenshots](#screenshots)
-- [Releases](#releases)
-- [License](#license)
+• The system supports loading nuScenes metadata and LiDAR related records into PostgreSQL
+• Browse and modify tables through a desktop GUI  
+• Perform basic CRUD operations  
+• Execute custom SQL queries and export results  
+• Import and export data using CSV or SQL dumps  
+• Access the data through a FastAPI REST interface  
+• An optional Docker setup is available
+• A prebuilt executable is available in the releases section
 
 ## Installation
 
-### Option 1: Running the Executable (Recommended)
+### Option 1: Executable
 
-1. Download the latest release: [nuScenes DB Tool - v1.0.0](https://github.com/erdemonal11/nuScenes-Toolkit/releases/tag/exe-release).
-2. Extract the files and run the `nuScenes DB Tool - v1.0.0.exe`.
+Download the latest executable release and run it directly:
 
-### Option 2: Using Docker
+https://github.com/erdemonal/nuScenes-Toolkit/releases/tag/exe-release
 
-1. Clone the repository:
+No Python installation is required for this option.
 
-   ```bash
-   git clone https://github.com/erdemonal11/nuScenes-Toolkit.git
-   cd nuScenes-Toolkit
-   ```
+### Option 2: Docker
 
-2. Create a `.env` file for environment variables:
+Clone the repository:
 
-   ```bash
-   DB_HOST=host.docker.internal
-   DB_PORT=5432
-   DB_NAME=nuscenes_db
-   DB_USER=postgres
-   DB_PASSWORD=yourpassword
-   NUSCENES_DATAROOT=/path/to/nuscenes
-   SQL_FILE_PATH=/path/to/nuScene.sql
-   ```
+```bash
+git clone https://github.com/erdemonal/nuScenes-Toolkit.git
+cd nuScenes-Toolkit
+```
 
-3. Build and run the Docker containers:
+Create a .env file:
 
-   ```bash
-   make start-fresh
-   ```
+```env
+DB_HOST=host.docker.internal
+DB_PORT=5432
+DB_NAME=nuscenes_db
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+NUSCENES_DATAROOT=/path/to/nuscenes
+SQL_FILE_PATH=/path/to/nuScene.sql
+```
 
-4. Access the API documentation at: `http://127.0.0.1:8000/docs`
+Build and start the containers:
+
+```bash
+make start-fresh
+```
+
+The API documentation will be available at:
+
+http://127.0.0.1:8000/docs
 
 ### Option 3: Manual Setup
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/erdemonal11/nuScenes-Toolkit.git
-   cd nuScenes-Toolkit
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the Python script:
-
-   ```bash
-   python nuscenetool.py
-   ```
-
-## How to Use
-
-### Connect to Database:
-1. Open the application and click **Connect to DB**.
-2. Enter the PostgreSQL database credentials (Host, Port, Database, User, and Password).
-3. Once connected, tables will appear in the dropdown for selection.
-
-### CRUD Operations:
-- **Insert**: Manually insert records or import from a CSV file.
-- **Update**: Select a record from the table and click **Update** to modify it.
-- **Delete**: Select a record and click **Delete** to remove it.
-
-### SQL Query Execution:
-- Use the **SQL** tool to write and execute custom queries.
-- View the query output and export the results in CSV format.
-
-### Export Data:
-- Click **Export DB** to export either a specific table or the entire database in CSV or SQL format.
-
-### CSV Import:
-- Use the **CSV import** feature to load data into the selected table from a CSV file.
-
-## API Documentation
-
-The FastAPI REST API provides endpoints for interacting with nuScenes data. For detailed API documentation, visit:
-
+Clone the repository:
+```bash
+git clone https://github.com/erdemonal/nuScenes-Toolkit.git
+cd nuScenes-Toolkit
 ```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application:
+
+```bash
+python nuscenetool.py
+```
+
+## Usage
+
+After launching the application, connect to a PostgreSQL database by providing the host, port, database name, user, and password.
+
+Once connected, database tables can be selected and inspected through the interface.
+
+Records can be inserted, updated, or deleted directly from the table view.
+CSV files can be imported into existing tables, and query results or full tables can be exported as CSV or SQL dumps.
+
+A SQL query tool allows execution of arbitrary queries against the database.
+
+## API
+
+The FastAPI service exposes endpoints for accessing nuScenes data stored in PostgreSQL.
+
+Interactive API documentation is available at:
+
 http://127.0.0.1:8000/docs
-```
 
 ## Database Schema
 
-The database schema is defined in `nuScene.sql`. It includes tables for logs, sensors, visibility, attributes, categories, instances, scenes, samples, ego poses, calibrated sensors, sample data, sample annotations, lidarseg, and maps.
+The database schema is defined in nuScene.sql.
+
+It includes tables corresponding to nuScenes entities such as scenes, samples, sample data, annotations, sensors, ego poses, attributes, categories, and maps.
 
 ## Screenshots
 
-### 1. Connection and UI
-The interface allows you to easily connect to a PostgreSQL database by providing the necessary credentials. After connecting, available tables are listed in the dropdown.
-
-![Connection and UI](./images/connection.png)
-
-### 2. Download Format
-After selecting a table, you can export the data in SQL or CSV format.
-
-![Download Format](./images/download.png)
-
-### 3. Table Data
-View, sort, and interact with the table data. You can perform CRUD operations on the records.
-
-![Table Data](./images/ui.png)
-
-### 4. SQL Query Tool
-Execute custom SQL queries and view the output directly in the tool.
-
-![SQL Query Tool](./images/querytool.png)
-
-### 5. Record Update
-Use the **Update** feature to modify existing records directly from the table view.
-
-![Record Update](./images/update.png)
+Screenshots of the GUI and query tools are available in the `images/directory`.
 
 ## Releases
 
-The latest version of the tool is available as an executable for easy installation:
+Prebuilt executables are provided in the GitHub releases section:
 
-- [Download nuScenes DB Tool - v1.0.0](https://github.com/erdemonal11/nuScenes-Toolkit/releases/tag/exe-release)
+https://github.com/erdemonal/nuScenes-Toolkit/releases 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
-
+This project is licensed under the MIT License.
+See the LICENSE file for details.
