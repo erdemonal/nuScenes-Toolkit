@@ -14,19 +14,6 @@ The tool consists of three main parts:
 • A REST API implemented with FastAPI for programmatic access  
 • A PostgreSQL schema designed around the nuScenes dataset  
 
-Docker support is provided for easier setup and repeatable environments.
-
-## Features
-
-• The system supports loading nuScenes metadata and LiDAR related records into PostgreSQL
-• Browse and modify tables through a desktop GUI  
-• Perform basic CRUD operations  
-• Execute custom SQL queries and export results  
-• Import and export data using CSV or SQL dumps  
-• Access the data through a FastAPI REST interface  
-• An optional Docker setup is available
-• A prebuilt executable is available in the releases section
-
 ## Installation
 
 ### Option 1: Executable
@@ -106,24 +93,3 @@ The FastAPI service exposes endpoints for accessing nuScenes data stored in Post
 Interactive API documentation is available at:
 
 http://127.0.0.1:8000/docs
-
-## Database Schema
-
-The database schema is defined in nuScene.sql.
-
-It includes tables corresponding to nuScenes entities such as scenes, samples, sample data, annotations, sensors, ego poses, attributes, categories, and maps.
-
-## Screenshots
-
-Screenshots of the GUI and query tools are available in the `images/directory`.
-
-## Releases
-
-Prebuilt executables are provided in the GitHub releases section:
-
-https://github.com/erdemonal/nuScenes-Toolkit/releases 
-
-## License
-
-This project is licensed under the MIT License.
-See the LICENSE file for details.
