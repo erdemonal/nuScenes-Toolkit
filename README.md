@@ -85,11 +85,3 @@ Records can be inserted, updated, or deleted directly from the table view.
 CSV files can be imported into existing tables, and query results or full tables can be exported as CSV or SQL dumps.
 
 A SQL query tool allows execution of arbitrary queries against the database.
-
-## API
-
-The FastAPI service exposes endpoints for accessing nuScenes data stored in PostgreSQL.
-
-Interactive API documentation is available at:
-
-http://127.0.0.1:8000/docs
